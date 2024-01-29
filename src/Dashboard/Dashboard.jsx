@@ -9,10 +9,8 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems } from "./listItems";
@@ -26,7 +24,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PersonAddSharpIcon from "@mui/icons-material/PersonAddSharp";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import Avatar from '@mui/material/Avatar'
 
 const drawerWidth = 240;
 
@@ -102,7 +101,7 @@ const Drawer = styled(MuiDrawer, {
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const toggleDrawer = () => {
@@ -158,7 +157,7 @@ export default function Dashboard() {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <AccountCircle />
+                  <Avatar alt="User" src="https://media.licdn.com/dms/image/C5603AQFZn5H18K0S4Q/profile-displayphoto-shrink_400_400/0/1609149687834?e=1712188800&v=beta&t=rL-m0NxQPMAeqNlSXyHDR5TDMyIzq0fZ0I8RpS8xEMg" />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -212,25 +211,34 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
+            <Box
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              <Typography />
-              Chess Pairing
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              paragraph
-            >
-              One stop platform to manage all types of Chess tournaments and
-              work collaboratively between organizers, players and followrs
-            </Typography>
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                <Typography />
+                Chess Pairing
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.secondary"
+                paragraph
+              >
+                One stop platform to manage all types of Chess tournaments and
+                work collaboratively between organizers, players and followrs
+              </Typography>
+            </Box>
           </Container>
           <Container>
             <Grid container spacing={4}>
@@ -255,7 +263,7 @@ export default function Dashboard() {
                       <Typography>{card.description}</Typography>
                     </CardContent>
                     <CardActions>
-                      <Button variant="contained" startIcon={card.icon}>
+                      <Button variant="contained" startIcon={card.icon} >
                         {card.buttonValue}
                       </Button>
                     </CardActions>

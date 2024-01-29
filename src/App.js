@@ -6,7 +6,7 @@ import Follow from './Follow/Follow.jsx'
 
 function App() {
   return (
-      <Follow />
+      <Join />
   );
 }
 
