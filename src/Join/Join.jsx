@@ -2,25 +2,6 @@ import React from "react";
 import { createTheme, ThemeProvider, CssBaseline, Box, Container, Link, Button, Avatar, TextField, Typography } from "@mui/material";
 import { PersonAddSharp as PersonAddSharpIcon } from "@mui/icons-material";
 
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
