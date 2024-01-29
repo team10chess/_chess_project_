@@ -16,7 +16,7 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
+import { mainListItems } from "./listItems";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -25,6 +25,7 @@ import CardMedia from "@mui/material/CardMedia";
 import PeopleIcon from '@mui/icons-material/People';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import PersonAddSharpIcon from '@mui/icons-material/PersonAddSharp';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -67,7 +68,6 @@ const cards = [
     buttonValue: "Follow",
     icon: <PeopleIcon />
   },
-  // Add more cards as needed
 ];
 
 const AppBar = styled(MuiAppBar, {
