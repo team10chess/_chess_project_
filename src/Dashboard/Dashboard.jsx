@@ -15,17 +15,18 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems } from "./listItems";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import PeopleIcon from '@mui/icons-material/People';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import PersonAddSharpIcon from '@mui/icons-material/PersonAddSharp';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import PeopleIcon from "@mui/icons-material/People";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import PersonAddSharpIcon from "@mui/icons-material/PersonAddSharp";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 function Copyright(props) {
   return (
@@ -46,27 +47,28 @@ function Copyright(props) {
 }
 
 const drawerWidth = 240;
+
 const cards = [
   {
     heading: "Create Tournament",
     description: "Click here to create tournament as an organizer",
     image: "https://source.unsplash.com/random?wallpapers1",
     buttonValue: "Create",
-    icon: <AddCircleOutlineIcon />
+    icon: <AddCircleOutlineIcon />,
   },
   {
     heading: "Join Tournament",
     description: "Click here to join a live tournament",
     image: "https://source.unsplash.com/random?wallpapers1",
     buttonValue: "Join",
-    icon: <PersonAddSharpIcon />
+    icon: <PersonAddSharpIcon />,
   },
   {
     heading: "Follow Tournament",
     description: "Follow tournament using Tournament ID",
     image: "https://source.unsplash.com/random?wallpapers1",
     buttonValue: "Follow",
-    icon: <PeopleIcon />
+    icon: <PeopleIcon />,
   },
 ];
 
@@ -119,8 +121,18 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const toggleDrawer = () => {
     setOpen(!open);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -154,11 +166,38 @@ export default function Dashboard() {
             >
               Chess Pairing platform
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            {auth && (
+              <div>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                </Menu>
+              </div>
+            )}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -234,7 +273,9 @@ export default function Dashboard() {
                       <Typography>{card.description}</Typography>
                     </CardContent>
                     <CardActions>
-                      <Button variant="contained" startIcon={card.icon}>{card.buttonValue}</Button>
+                      <Button variant="contained" startIcon={card.icon}>
+                        {card.buttonValue}
+                      </Button>
                     </CardActions>
                   </Card>
                 </Grid>

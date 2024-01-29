@@ -37,7 +37,7 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={10}>
           <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label">
               Gender
