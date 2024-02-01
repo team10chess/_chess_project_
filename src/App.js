@@ -1,12 +1,14 @@
 import './App.css';
-import Dashboard from './Dashboard/Dashboard.jsx';
-import Join from './Join/Join.jsx'
-import Create from './Create/Create.jsx';
-import Follow from './Follow/Follow.jsx'
+import Routess from './Routess';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 function App() {
   return (
-      <Create />
+    <div className="App">
+    <Router>
+    <Routess />
+    </Router>
+  </div>
   );
 }
 
