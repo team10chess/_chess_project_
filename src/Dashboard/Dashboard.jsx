@@ -24,8 +24,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PersonAddSharpIcon from "@mui/icons-material/PersonAddSharp";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Avatar from '@mui/material/Avatar'
+import Avatar from "@mui/material/Avatar";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -157,7 +157,10 @@ export default function Dashboard() {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <Avatar alt="User" src="https://media.licdn.com/dms/image/C5603AQFZn5H18K0S4Q/profile-displayphoto-shrink_400_400/0/1609149687834?e=1712188800&v=beta&t=rL-m0NxQPMAeqNlSXyHDR5TDMyIzq0fZ0I8RpS8xEMg" />
+                  <Avatar
+                    alt="User"
+                    src="https://media.licdn.com/dms/image/C5603AQFZn5H18K0S4Q/profile-displayphoto-shrink_400_400/0/1609149687834?e=1712188800&v=beta&t=rL-m0NxQPMAeqNlSXyHDR5TDMyIzq0fZ0I8RpS8xEMg"
+                  />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -225,8 +228,8 @@ export default function Dashboard() {
                 align="center"
                 color="text.primary"
                 gutterBottom
+                noWrap
               >
-                <Typography />
                 Chess Pairing
               </Typography>
               <Typography
@@ -235,13 +238,17 @@ export default function Dashboard() {
                 color="text.secondary"
                 paragraph
               >
-                One stop platform to manage all types of Chess tournaments and
-                work collaboratively between organizers, players and followrs
+                One-stop platform to manage all types of Chess tournaments and
+                work collaboratively between organizers, players, and followers.
               </Typography>
+              <Box sx={{ my: 4 }}>
+                {" "}
+                {/* Added extra space using my prop  */}
+              </Box>
             </Box>
           </Container>
           <Container>
-            <Grid container spacing={4}>
+            <Grid container spacing={4} justifyContent="center">
               {cards.map((card) => (
                 <Grid item key={card.heading} xs={12} sm={6} md={4}>
                   <Card
@@ -249,6 +256,7 @@ export default function Dashboard() {
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
+                      borderRadius: 2, // Add this line to give the card some curves
                     }}
                   >
                     <CardMedia
@@ -262,8 +270,8 @@ export default function Dashboard() {
                       </Typography>
                       <Typography>{card.description}</Typography>
                     </CardContent>
-                    <CardActions>
-                      <Button variant="contained" startIcon={card.icon} >
+                    <CardActions sx={{ justifyContent: "center"}}>
+                      <Button variant="contained" startIcon={card.icon}>
                         {card.buttonValue}
                       </Button>
                     </CardActions>

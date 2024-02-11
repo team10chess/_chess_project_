@@ -1,21 +1,48 @@
-import React from "react";
-import { createTheme, ThemeProvider, CssBaseline, Box, Container, Link, Button, Avatar, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import {
+  createTheme,
+  ThemeProvider,
+  CssBaseline,
+  Box,
+  Container,
+  Link,
+  Button,
+  Avatar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { PersonAddSharp as PersonAddSharpIcon } from "@mui/icons-material";
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import Snackbar from "@mui/material/Snackbar";
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const [tournamentId, setTournamentId] = useState("");
+  const [playerId, setPlayerId] = useState("");
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    setTournamentId(data.get("tournamentId"));
+    setPlayerId(data.get("playerId"));
+    handleClick(); // Add this line
   };
-
+  
+  console.log(tournamentId);
+  console.log(playerId);
+  
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -44,21 +71,19 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="id"
+              id="tournamentId"
               label="Tournament ID"
-              name="email"
-              autoComplete="email"
+              name="tournamentId"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="password"
+              name="playerId"
               label="Player ID"
               type="text"
-              id="password"
-              autoComplete="current-password"
+              id="playerId"
             />
             <Button
               type="submit"
@@ -66,8 +91,14 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Join 
+              Join
             </Button>
+            <Snackbar
+              open={open}
+              autoHideDuration={5000}
+              onClose={handleClose}
+              message="This Snackbar will be dismissed in 5 seconds."
+            />
           </Box>
         </Box>
       </Container>

@@ -3,23 +3,27 @@ import { useState } from 'react';
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
+import Snackbar from "@mui/material/Snackbar";
+import Box from "@mui/material/Box";
 
 export default function AddressForm() {
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    gender: "",
     orgid: "",
   });
 
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!formData.firstName || !formData.lastName || !formData.orgid) {
+      setMessage("All fields are required");
+      setOpen(true);
+      return;
+    }
     const jsonData = JSON.stringify(formData);
     console.log(jsonData);
   };
@@ -31,6 +35,13 @@ export default function AddressForm() {
     });
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -38,7 +49,7 @@ export default function AddressForm() {
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={25}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               id="firstName"
@@ -62,35 +73,6 @@ export default function AddressForm() {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xs={12} sm={10}>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">
-                Gender
-              </FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                onChange={handleChange}
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio />}
-                  label="Male"
-                />
-                <FormControlLabel
-                  value="other"
-                  control={<Radio />}
-                  label="Other"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
           <Grid item xs={12}>
             <TextField
               required
@@ -103,6 +85,12 @@ export default function AddressForm() {
               onChange={handleChange}
             />
           </Grid>
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message={message}
+          />
         </Grid>
       </form>
     </React.Fragment>
