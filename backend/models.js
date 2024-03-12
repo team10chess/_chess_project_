@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const Create = mongoose.Schema({
     firstName : {type: String, required:'Firstname is required'},
@@ -6,4 +7,5 @@ const Create = mongoose.Schema({
     orgId : {type: String, required:'ID is required'},
 })
 
-export default mongoose.model('create', Create)
+mongoose.model('create', Create)
+module.exports=Create
