@@ -29,6 +29,8 @@ import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
+const routes=["/Create", "/Join","/Follow"]
+
 const cards = [
   {
     heading: "Create Tournament",
@@ -101,6 +103,7 @@ const Drawer = styled(MuiDrawer, {
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
+  const navigate = useNavigate()
   const [open, setOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -249,7 +252,7 @@ export default function Dashboard() {
           </Container>
           <Container>
             <Grid container spacing={4} justifyContent="center">
-              {cards.map((card) => (
+              {cards.map((card,i) => (
                 <Grid item key={card.heading} xs={12} sm={6} md={4}>
                   <Card
                     sx={{
@@ -271,7 +274,7 @@ export default function Dashboard() {
                       <Typography>{card.description}</Typography>
                     </CardContent>
                     <CardActions sx={{ justifyContent: "center"}}>
-                      <Button variant="contained" startIcon={card.icon}>
+                      <Button onClick={()=>navigate(routes[i])} variant="contained" startIcon={card.icon}>
                         {card.buttonValue}
                       </Button>
                     </CardActions>

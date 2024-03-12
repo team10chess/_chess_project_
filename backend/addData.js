@@ -2,7 +2,7 @@ import create from './models.js'
 import mongoose from 'mongoose';
 
 export const createData = async (req,res)=>{
-    const data = {firstName:'QWEr',lastName:'gfhf',gender:'M',orgId:'gfh3454'}
+    const data = {firstName:'QWEr',lastName:'gfhf',orgId:'gfh3454'}
     const newOrg = new create(data)
     try{
         await newOrg.save()
