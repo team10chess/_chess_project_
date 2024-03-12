@@ -5,13 +5,14 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Box from "@mui/material/Box";
+import createData from "../backend/addData";
 
 export default function AddressForm() {
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    orgid: "",
+    orgId: "",
   });
 
   const [open, setOpen] = useState(false);
@@ -19,13 +20,15 @@ export default function AddressForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.orgid) {
+    if (!formData.firstName || !formData.lastName || !formData.orgId) {
       setMessage("All fields are required");
       setOpen(true);
       return;
     }
     const jsonData = JSON.stringify(formData);
     console.log(jsonData);
+    // createData(jsonData);
+
   };
   
   const handleChange = (event) => {
@@ -76,11 +79,11 @@ export default function AddressForm() {
           <Grid item xs={12}>
             <TextField
               required
-              id="orgid"
-              name="orgid"
+              id="orgId"
+              name="orgId"
               label="Organizer ID"
               fullWidth
-              autoComplete="orgid"
+              autoComplete="orgId"
               variant="standard"
               onChange={handleChange}
             />
@@ -92,6 +95,7 @@ export default function AddressForm() {
             message={message}
           />
         </Grid>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </React.Fragment>
   );

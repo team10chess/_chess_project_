@@ -1,5 +1,5 @@
 // // import {createData} from './addData.js';
-const { createData } = require('./addData.js');
+const createData  = require('./addData.js');
 // // import mongoose from 'mongoose';
 // const mongoose = require('mongoose');
 
@@ -22,6 +22,7 @@ const DATABASE_URL = 'mongodb+srv://ChessProject:Team10%40123@cluster0.lffck.mon
 mongoose.connect(DATABASE_URL)
     .then(() => {
         console.log("Listening...")
-        createData();
+        // createData();
     })
     .catch((err) => console.log(err.message));
+
