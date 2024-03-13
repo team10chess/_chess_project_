@@ -18,11 +18,18 @@ const createData  = require('./addData.js');
 const mongoose = require('mongoose');
 
 const DATABASE_URL = 'mongodb+srv://ChessProject:Team10%40123@cluster0.lffck.mongodb.net/?retryWrites=true&w=majority';
-
 mongoose.connect(DATABASE_URL)
     .then(() => {
         console.log("Listening...")
-        // createData();
+        
     })
-    .catch((err) => console.log(err.message));
+    .catch(err => {
+        console.log(err.message);
 
+    })
+
+const dbfun=(a,b,c)=>{
+    createData(a,b,c);
+
+}
+module.exports=dbfun;

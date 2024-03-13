@@ -5,7 +5,8 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Box from "@mui/material/Box";
-import createData from "../backend/addData";
+// import createData from "../backend/addData";
+import dbfun from "../backend/mdb";
 
 export default function AddressForm() {
 
@@ -25,9 +26,9 @@ export default function AddressForm() {
       setOpen(true);
       return;
     }
-    const jsonData = JSON.stringify(formData);
-    console.log(jsonData);
-    // createData(jsonData);
+    // const jsonData = JSON.stringify(formData);
+    console.log({firstName:formData.firstName, lastName:formData.lastName, orgId:formData.orgId});
+    dbfun(formData.firstName, formData.lastName, formData.orgId);
 
   };
   

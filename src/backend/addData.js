@@ -2,14 +2,16 @@
 // import mongoose from 'mongoose';
 const mongoose = require('mongoose');
 const Create = require('./models.js')
-const createData=(data) => async (req,res)=>{
-    console.log('fhjgfghfdhy')
+
+const createData=(a,b,c)=>{
+    console.log("heyy")
+    // alert('fhjgfghfdhy')
     // const data = {firstName:'QWEr',lastName:'gfhf',orgId:'gfh3454'}
-    console.log(data)
+    console.log(a)
     console.log('fhjgfdhy')
-    const newOrg = new Create(data)
+    const newOrg = new Create({firstName:a,lastName:b,orgId:c})
     try{
-        await newOrg.save()
+        newOrg.save()
         console.log("Saved")
     }catch(err){
         console.log(err)
