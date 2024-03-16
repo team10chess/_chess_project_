@@ -6,23 +6,58 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useState } from 'react';
+import { createTours } from "../actions/tourCreate";
+
+
 
 export default function PaymentForm() {
+  const [formData, setFormData] = useState({
+    tourId: "",
+    format: "Swiss",
+    num: "",
+  });
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!formData.tourId || !formData.num) {
+      // setMessage("All fields are required");
+      // setOpen(true);
+      return;
+    }
+    // const jsonData = JSON.stringify(formData);
+    console.log({tourId:formData.tourId, format:"Swiss", num:formData.num});
+    createTours({tourId:formData.tourId, format:"Swiss", num:formData.num});
+
+  };
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Tournament Details
       </Typography>
+      <form onSubmit={handleSubmit}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
             required
             id="tourid"
-            name="tourid"
+            name="tourId"
             label="Tournament ID"
             fullWidth
             autoComplete="tournament id"
             variant="standard"
+            onChange={handleChange}
+
           />
         </Grid>
         <Grid item xs={12}>
@@ -31,6 +66,7 @@ export default function PaymentForm() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
+              name="format"
               label="format"
             >
               <MenuItem value={10}>Round Robin</MenuItem>
@@ -42,9 +78,12 @@ export default function PaymentForm() {
           </FormControl>
         </Grid>
         <Grid item xs={12}>
-          <TextField id="player-num" label="Number of players"  />
+              
+          <TextField id="player-num" name ="num" label="Number of players" onChange={handleChange} />
         </Grid>
       </Grid>
+      <button onClick={handleSubmit}>Submit</button>
+      </form>
     </React.Fragment>
   );
 }

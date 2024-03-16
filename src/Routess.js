@@ -10,7 +10,7 @@ const Routess = () => {
     <Routes>
       <Route path="/" element={<Dashboard/>}/>
       <Route path="/Join" element={<Join/>}/>
-      <Route path="/Create" element={<Create/>}/>
+      <Route path="/create" element={<Create/>}/>
       <Route path="/Follow" element={<Follow/>}/>
     </Routes>
   )

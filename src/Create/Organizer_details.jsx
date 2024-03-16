@@ -6,7 +6,8 @@ import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Box from "@mui/material/Box";
 // import createData from "../backend/addData";
-import dbfun from "../backend/mdb";
+import { createUsers } from "../actions/Create";
+
 
 export default function AddressForm() {
 
@@ -18,7 +19,6 @@ export default function AddressForm() {
 
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!formData.firstName || !formData.lastName || !formData.orgId) {
@@ -28,7 +28,7 @@ export default function AddressForm() {
     }
     // const jsonData = JSON.stringify(formData);
     console.log({firstName:formData.firstName, lastName:formData.lastName, orgId:formData.orgId});
-    dbfun(formData.firstName, formData.lastName, formData.orgId);
+    createUsers({firstName:formData.firstName,lastName:formData.lastName,orgId:formData.orgId});
 
   };
   

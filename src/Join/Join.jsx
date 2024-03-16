@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { PersonAddSharp as PersonAddSharpIcon } from "@mui/icons-material";
 import Snackbar from "@mui/material/Snackbar";
+import { joinUsers } from "../actions/Join";
+
 
 const defaultTheme = createTheme();
 
@@ -35,10 +37,30 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setTournamentId(data.get("tournamentId"));
+    setTournamentId(data.get("tourId"));
     setPlayerId(data.get("playerId"));
+    alert(tournamentId)
     handleClick(); // Add this line
   };
+
+  const handleButton=(event) => {
+    event.preventDefault();
+
+    if (!tournamentId || !playerId ) {
+      // setMessage("All fields are required");
+      setOpen(true);
+      return;
+    }
+    // const jsonData = JSON.stringify(formData);
+    // console.log({firstName:formData.firstName, lastName:formData.lastName, orgId:formData.orgId});
+    alert(tournamentId)
+    joinUsers({tourId:tournamentId,playerId:playerId});
+   
+
+  }
+
+  
+
   
   console.log(tournamentId);
   console.log(playerId);
@@ -61,6 +83,8 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Join Tournament
           </Typography>
+      <form onSubmit={handleButton}>
+
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -73,7 +97,8 @@ export default function SignIn() {
               fullWidth
               id="tournamentId"
               label="Tournament ID"
-              name="tournamentId"
+              name="tourId"
+
               autoFocus
             />
             <TextField
@@ -84,15 +109,16 @@ export default function SignIn() {
               label="Player ID"
               type="text"
               id="playerId"
+
             />
-            <Button
+            {/* <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               Join
-            </Button>
+            </Button> */}
             <Snackbar
               open={open}
               autoHideDuration={5000}
@@ -100,6 +126,9 @@ export default function SignIn() {
               message="This Snackbar will be dismissed in 5 seconds."
             />
           </Box>
+        <button onClick={handleButton}>Submit</button>
+
+          </form>
         </Box>
       </Container>
     </ThemeProvider>
