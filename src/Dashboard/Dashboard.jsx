@@ -126,7 +126,7 @@ export default function Dashboard() {
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: "24px", // keep right padding when drawer closed
+              pr: "24px", 
             }}
           >
             <IconButton
@@ -259,7 +259,7 @@ export default function Dashboard() {
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
-                      borderRadius: 2, // Add this line to give the card some curves
+                      borderRadius: 2, 
                     }}
                   >
                     <CardMedia
